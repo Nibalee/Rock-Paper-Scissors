@@ -21,38 +21,56 @@
             return str.toLowerCase();
         }
 
-        let player = playerSelection();
-        let computer = rolegetComputerChoice();
+        let computerScore=0;
+        let playerScore = 0;
+
         
-        function singleRound(player, computer){
-            if(player.toLowerCase() === roles[computer].toLocaleLowerCase()){
-                console.log("It is a draw ! You chose the same move.");
+            function singleRound(player, computer){
+                if(player.toLowerCase() === roles[computer].toLocaleLowerCase()){
+                    return "It is a draw ! You chose the same move.";
+                }
+                else if(player.toLowerCase() === 'rock'){
+                    if(roles[computer].toLocaleLowerCase()=== "scissors"){
+                        playerScore++;
+                        return "You won ! Rock beats Scissors";
+                    }
+                    else {
+                        computerScore++;
+                        return "You lost! Paper beats Rock";
+                    }
+                }
+                else if(player.toLowerCase() === "paper"){
+                    if(roles[computer].toLocaleLowerCase()=== "Rock"){
+                        playerScore++;
+                        return "You won ! Paper beats Rock";
+                    }
+                    else {
+                        computerScore++;
+                        return "You lost! Scissors beats Paper";
+                    }
+                }
+                else if(player.toLowerCase() === "scissors"){
+                    if(roles[computer].toLocaleLowerCase()=== "Paper"){
+                        playerScore++;
+                        return "You won ! Scissors beats Paper";
+                    }
+                    else {
+                        computerScore++;
+                        return "You lost! Rock beats Scissors";
+                    }
+                }
             }
-            else if(player.toLowerCase() === 'rock'){
-                if(roles[computer].toLocaleLowerCase()=== "scissors"){
-                    console.log("You won ! Rock beats Scissors");
-                }
-                else {
-                    console.log("You lost! Paper beats Rock");
-                }
-            }
-            else if(player.toLowerCase() === "paper"){
-                if(roles[computer].toLocaleLowerCase()=== "Rock"){
-                    console.log("You won ! Paper beats Rock");
-                }
-                else {
-                    console.log("You lost! Scissors beats Paper");
-                }
-            }
-            else if(player.toLowerCase() === "scissors"){
-                if(roles[computer].toLocaleLowerCase()=== "Paper"){
-                    console.log("You won ! Scissors beats Paper");
-                }
-                else {
-                    console.log("You lost! Rock beats Scissors");
-                }
-            }
+        while(playerScore !== 5 && computerScore!== 5){
+            let player = playerSelection();
+            console.log(player);
+            let computer = getComputerChoice();
+            console.log(roles[computer]);
+            console.log(singleRound(player, computer));
+            console.log("Player:" + playerScore);
+            console.log("Computer: "+ computerScore);
         }
+
+        console.log((playerScore===5)? "You won!": "You lost");
 
     </script>
 </body>
